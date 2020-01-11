@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asv.GoPro", "Asv.GoPro\Asv.GoPro.csproj", "{3EEC3C49-66B4-4EF6-A8A7-F30ACAF09B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asv.GoPro.Shell", "Asv.GoPro.Shell\Asv.GoPro.Shell.csproj", "{E3BB0324-08E4-4829-BEA7-1DAAEDF3D5BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EEC3C49-66B4-4EF6-A8A7-F30ACAF09B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EEC3C49-66B4-4EF6-A8A7-F30ACAF09B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EEC3C49-66B4-4EF6-A8A7-F30ACAF09B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EEC3C49-66B4-4EF6-A8A7-F30ACAF09B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3BB0324-08E4-4829-BEA7-1DAAEDF3D5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3BB0324-08E4-4829-BEA7-1DAAEDF3D5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3BB0324-08E4-4829-BEA7-1DAAEDF3D5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3BB0324-08E4-4829-BEA7-1DAAEDF3D5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
