@@ -24,6 +24,11 @@ namespace Asv.GoPro.Shell
                 Console.WriteLine(commands.ToArray().Length);
                 return ConsoleCommandDispatcher.DispatchCommand(commands, args, Console.Out);
             }
+            catch (AggregateException ex)
+            {
+                Console.WriteLine(@"Unhandled exception: {0}", ex.InnerExceptions.FirstOrDefault()?.Message);
+                return -1;
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(@"Unhandled exception: {0}", ex);

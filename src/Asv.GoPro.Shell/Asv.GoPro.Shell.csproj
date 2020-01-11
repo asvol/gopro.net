@@ -66,8 +66,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\GetStatusCommand.cs" />
+    <Compile Include="Commands\GetLastMediaFile.cs" />
+    <Compile Include="Commands\GetMediaFile.cs" />
+    <Compile Include="Commands\GetMediaListCommand.cs" />
+    <Compile Include="Commands\SetModeCommand.cs" />
     <Compile Include="Commands\GoProCommandBase.cs" />
+    <Compile Include="Commands\StartCommand.cs" />
+    <Compile Include="Commands\StopCommand.cs" />
     <Compile Include="Tools\AssemblyInfoExtentions.cs" />
     <Compile Include="Tools\ConsoleWelcomePrinter.cs" />
     <Compile Include="Program.cs" />
