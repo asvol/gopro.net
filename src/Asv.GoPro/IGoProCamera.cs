@@ -38,5 +38,6 @@ namespace Asv.GoPro
         Task Stop(CancellationToken cancel);
         Task<MediaList> GetMediaList(CancellationToken cancel);
         Task DownloadFile(string sourceDirName, string sourceFileName, string destFileName, CancellationToken cancel);
+        Task DownloadThumbnail(string sourceDirName, string sourceFileName, string destFileName, CancellationToken cancel);
     }
 }

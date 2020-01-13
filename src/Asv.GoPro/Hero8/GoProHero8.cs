@@ -139,6 +139,25 @@ namespace Asv.GoPro
             }
         }
 
+        public async Task DownloadThumbnail(string sourceDirName, string sourceFileName, string destFileName, CancellationToken cancel)
+        {
+            using (var client = CreateHttpClient())
+            {
+                using (var result =
+                    await client.GetAsync($"{_baseUri}/gp/gpMediaMetadata?p={sourceDirName}/{sourceFileName}", cancel))
+                {
+                    result.EnsureSuccessStatusCode();
+                    using (var httpStream = await result.Content.ReadAsStreamAsync())
+                    {
+                        using (var file = File.OpenWrite(destFileName))
+                        {
+                            await httpStream.CopyToAsync(file);
+                        }
+                    }
+                }
+            }
+        }
+
 
         public void Dispose()
         {

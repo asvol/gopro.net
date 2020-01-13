@@ -11,6 +11,7 @@ namespace Asv.GoPro.Shell
 {
     class Program
     {
+        
         static int Main(string[] args)
         {
             Console.InputEncoding = Encoding.UTF8;
@@ -21,7 +22,6 @@ namespace Asv.GoPro.Shell
             try
             {
                 var commands = ConsoleCommandDispatcher.FindCommandsInAssembly(Assembly.GetExecutingAssembly());
-                Console.WriteLine(commands.ToArray().Length);
                 return ConsoleCommandDispatcher.DispatchCommand(commands, args, Console.Out);
             }
             catch (AggregateException ex)

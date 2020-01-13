@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,8 +15,12 @@ namespace Asv.GoPro.Shell
         protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
         {
             Console.WriteLine("Send start command");
+            Console.WriteLine("Begin resize image to ");
+            var sw = new Stopwatch();
+            sw.Start();
             await camera.Start(cancel);
-            Console.WriteLine($"Start success");
+            sw.Stop();
+            Console.WriteLine($"Start success by {sw.Elapsed:g}");
         }
     }
 }

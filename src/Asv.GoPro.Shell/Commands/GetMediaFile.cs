@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,9 +22,13 @@ namespace Asv.GoPro.Shell
         protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
         {
             Console.WriteLine("Try download media file");
+            
             _destFileName = _destFileName ?? _sourceFileName;
+            var sw = new Stopwatch();
+            sw.Start();
             await camera.DownloadFile(_sourceDirName,_sourceFileName,_destFileName ,cancel);
-            Console.WriteLine($"File saved success '{_destFileName}'");
+            sw.Stop();
+            Console.WriteLine($"File saved success '{_destFileName}' by {sw.Elapsed:g}");
         }
     }
 }
