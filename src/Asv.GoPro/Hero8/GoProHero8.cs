@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Asv.GoPro
 {
@@ -45,12 +46,45 @@ namespace Asv.GoPro
             return new DateTime(1970, 1, 1, 0, 0, 0) + TimeSpan.FromSeconds(unixTime);
         }
 
-        public Task<string> GetStatus(CancellationToken cancel)
+        public async Task<GoproCameraInfo> GetStatus(CancellationToken cancel)
         {
-            return GetString("/gp/gpControl/status",cancel);
-        }
+            var str = await GetString("/gp/gpControl/status", cancel);
 
-        
+
+            var json = JsonConvert.DeserializeObject<JObject>(str);
+            var status = (JObject) json["status"];
+            var settings = (JObject) json["settings"];
+            return new GoproCameraInfo
+            {
+                Settings = new CameraSettings
+                {
+//                    SubVideoMode = (SubVideoMode)settings["68"].Value<int>(),
+//                    VideoResolution = (VideoResolution)settings["2"].Value<int>(),
+//                    FrameRate = GetEnum<FrameRate?>(settings,"3"),
+                },
+                Status = new CameraStatus
+                {
+//                    IsBatteryAvailable = status["1"].Value<int>() != 0,
+//                    BatteryLevel = (BatteryLevel) status["2"].Value<int>(),
+//                    Mode = (CameraMode) status["43"].Value<int>(),
+//                    SubMode = (CameraSubMode) status["44"].Value<int>(),
+//                    RecordDuration = status["13"].Value<int>(),
+//                    MultiShotPicturesTaken = status["39"].Value<int>(),
+//                    NumberOfClients = status["39"].Value<int>(),
+//                    IsStreaming = status["32"].Value<int>() != 0,
+//                    IsSdCard = status["33"].Value<int>() != 0,
+//                    RemainingPhotos = status["34"].Value<int>(),
+//                    RemainingVideoTime = status["35"].Value<int>(),
+//                    BatchPhotosTaken = status["36"].Value<int>(),
+//                    NumberOfVideosShot = status["37"].Value<int>(),
+//                    NumberOfAllPhotos = status["38"].Value<int>(),
+//                    NumberOfAllVideos = status["39"].Value<int>(),
+//                    IsRecording = status["8"].Value<int>() != 0,
+//                    SdFreeSpace = status["54"].Value<int>(),
+                }
+            };
+
+        }
 
         public Task SetMode(GoProMode mode,CancellationToken cancel)
         {
@@ -165,5 +199,5 @@ namespace Asv.GoPro
         }
     }
 
-   
+    
 }
