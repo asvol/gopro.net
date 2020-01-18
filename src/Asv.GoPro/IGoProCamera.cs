@@ -13,6 +13,13 @@ namespace Asv.GoPro
         MultiShot
     }
 
+    public enum GoProFileType
+    {
+        Unknown,
+        Video,
+        Photo,
+    }
+
     public class MediaList
     {
         public List<MediaItem> Items { get; set; } = new List<MediaItem>();
@@ -24,6 +31,7 @@ namespace Asv.GoPro
         public string Directory { get; set; }
         public string Name { get; set; }
         public DateTime Modified { get; set; }
+        public GoProFileType Type { get; set; }
 
         public override string ToString()
         {

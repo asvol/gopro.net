@@ -140,6 +140,7 @@ namespace Asv.GoPro
                 {
                     list.Items.Add(new MediaItem
                     {
+                        Type = ParseTypeByExt((string)item.n),
                         Directory = medium.d,
                         Name = item.n,
                         Created = ConvertUnixTime(int.Parse((string)item.cre)),
@@ -148,6 +149,27 @@ namespace Asv.GoPro
                 }
             }
             return list;
+
+        }
+
+        private GoProFileType ParseTypeByExt(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+                return GoProFileType.Unknown;
+            var ext = Path.GetExtension(fileName);
+            if (string.IsNullOrWhiteSpace(ext)) return GoProFileType.Unknown;
+
+            if (ext.Equals(".jpeg", StringComparison.InvariantCultureIgnoreCase)
+             || ext.Equals(".jpg", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return GoProFileType.Photo;
+            }
+            if (ext.Equals(".mp4", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return GoProFileType.Video;
+            }
+
+            return GoProFileType.Unknown;
 
         }
 
