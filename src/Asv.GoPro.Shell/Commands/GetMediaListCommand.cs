@@ -13,7 +13,8 @@ namespace Asv.GoPro.Shell
             IsCommand("media", "Print media list");
         }
 
-        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
+        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel,
+            string[] remainingArguments)
         {
             Console.WriteLine("Try get media list");
 

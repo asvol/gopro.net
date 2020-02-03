@@ -22,13 +22,13 @@ namespace Asv.GoPro.Shell
             using (var camera = new GoProHero8(_host,_port))
             {
                 var cancel = new CancellationTokenSource(_timeoutMs);
-                RunAsync(camera, cancel.Token).Wait();
+                RunAsync(camera, cancel.Token, remainingArguments).Wait(cancel.Token);
             }
 
             return 0;
         }
 
-        protected abstract Task RunAsync(IGoProCamera camera, CancellationToken cancel);
+        protected abstract Task RunAsync(IGoProCamera camera, CancellationToken cancel, string[] remainingArguments);
 
     }
 }

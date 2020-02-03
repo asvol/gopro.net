@@ -50,12 +50,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotLiquid, Version=2.0.314.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotLiquid.2.0.314\lib\net45\DotLiquid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ManyConsole, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\ManyConsole.1.0.0.4\lib\ManyConsole.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Options, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\Mono.Options.5.3.0.1\lib\net4-client\Mono.Options.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -86,14 +94,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CodeGenFromJsonSchema.cs" />
     <Compile Include="Commands\GetLastMediaFile.cs" />
     <Compile Include="Commands\GetMediaFile.cs" />
     <Compile Include="Commands\GetMediaListCommand.cs" />
+    <Compile Include="Commands\GetStatus.cs" />
     <Compile Include="Commands\ResizeImageFile.cs" />
     <Compile Include="Commands\SetModeCommand.cs" />
     <Compile Include="Commands\GoProCommandBase.cs" />
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\StopCommand.cs" />
+    <Compile Include="Commands\GetJsonSchema.cs" />
+    <Compile Include="Protocol\GoProProtocolParser.cs" />
+    <Compile Include="Protocol\GoProProtocolModel.cs" />
     <Compile Include="Tools\AssemblyInfoExtentions.cs" />
     <Compile Include="Tools\ConsoleWelcomePrinter.cs" />
     <Compile Include="Program.cs" />
@@ -101,6 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="csharp.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

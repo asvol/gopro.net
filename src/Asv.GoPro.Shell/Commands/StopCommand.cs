@@ -12,7 +12,8 @@ namespace Asv.GoPro.Shell
             IsCommand("stop","Stop capture video");
         }
 
-        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
+        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel,
+            string[] remainingArguments)
         {
             Console.WriteLine("Send stop command");
             var sw = new Stopwatch();

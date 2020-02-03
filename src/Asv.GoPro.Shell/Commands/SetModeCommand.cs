@@ -15,7 +15,8 @@ namespace Asv.GoPro.Shell
             HasRequiredOption("m|mode=",$"Available values {string.Join(",", Enum.GetNames(typeof(GoProMode)))}",_=>_mode = (GoProMode) Enum.Parse(typeof(GoProMode),_, true) );
         }
 
-        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
+        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel,
+            string[] remainingArguments)
         {
             Console.WriteLine($"Send change mode '{_mode:G}' command");
             Console.WriteLine("Begin resize image to ");

@@ -12,7 +12,8 @@ namespace Asv.GoPro.Shell
             IsCommand("start", $"Start record video \\ take photo");
         }
 
-        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
+        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel,
+            string[] remainingArguments)
         {
             Console.WriteLine("Send start command");
             Console.WriteLine("Begin resize image to ");

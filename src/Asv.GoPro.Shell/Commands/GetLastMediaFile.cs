@@ -19,7 +19,8 @@ namespace Asv.GoPro.Shell
             HasOption("f|file=", "dest file name. Default file name as camera file name", _ => _destFileName = _);
         }
 
-        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel)
+        protected override async Task RunAsync(IGoProCamera camera, CancellationToken cancel,
+            string[] remainingArguments)
         {
             Console.WriteLine("Try to find last file");
             var sw = new Stopwatch();
