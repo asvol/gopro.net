@@ -1,65 +1,56 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using Dm734.Core;
-using DotLiquid;
-using DotLiquid.NamingConventions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Asv.GoPro.Shell.Protocol
 {
-    public static class GoProProtocolGenerator
-    {
-        public static string Generate(GoProProtocolModel m, string template)
-        {
-            Template.NamingConvention = new CSharpNamingConvention();
-            var args = Hash.FromAnonymousObject(new
-            {
-                Tool = Assembly.GetCallingAssembly().GetTitle(),
-                ToolVersion = Assembly.GetCallingAssembly().GetInformationalVersion(),
-                ProtocolVersion = m.Version,
-                ProtocolSchemaVersion = m.SchemaVersion,
-                Status = m.Status.Select(group => new
-                {
-                    Name = group.Name,
-                    CamelName = NameConverter(group.Name),
-                    Fields = group.Fields.Select(f => new
-                    {
-                        Name = f.Name,
-                        CamelName = NameConverter(f.Name),
-                        Id = f.Id,
-                        Type = f.Type.ToString("G"),
-                    })
-                })
-            });
-            var result = Template.Parse(template);
-            return result.Render(args);
-        }
-
-        private static string NameConverter(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name)) return null;
-            var a = Regex.Replace(name.ToLower(), "_([a-z0-9])", _ => _.Value.Substring(1).ToUpper(), RegexOptions.Compiled);
-            a = a.Substring(0, 1).ToUpper() + a.Substring(1);
-            return a;
-        }
-    }
-
     public class GoProProtocolParser
     {
         public static GoProProtocolModel Parse(string schema, string responseExample)
         {
             var root = JsonConvert.DeserializeObject<JObject>(schema);
             var example = JsonConvert.DeserializeObject<JObject>(responseExample);
+
+            var settings = root["settings"].Children().Select(ParseSettings).ToArray();
+
+            foreach (var set in settings)
+            {
+                foreach (var group in set.Options.GroupBy(_=>_.DisplayName))
+                {
+                    var items = group.ToArray();
+                    if (items.Length <= 1) continue;
+                    foreach (var notUniqueNameItems in items)
+                    {
+                        notUniqueNameItems.Group = @group.Key;
+                        notUniqueNameItems.NotUnique = true;
+                        notUniqueNameItems.UniqueDisplayName = @group.Key + notUniqueNameItems.Id;
+                    }
+                }
+            }
+
+            foreach (var group in settings.GroupBy(_ => _.DisplayName))
+            {
+                var items = group.ToArray();
+                if (items.Length <= 1) continue;
+                foreach (var notUniqueNameItems in items)
+                {
+                    notUniqueNameItems.Group = @group.Key;
+                    notUniqueNameItems.NotUnique = true;
+                    notUniqueNameItems.UniqueDisplayName = @group.Key + notUniqueNameItems.Id;
+                }
+            }
+
             
+
             // parse schema
             var result = new GoProProtocolModel
             {
                 Version = root["version"].ToObject<int>(),
                 SchemaVersion = root["schema_version"].ToObject<int>(),
-                Status = root["status"]["groups"].Children().Select(ParseGroup).ToArray()
+                Status = root["status"]["groups"].Children().Select(ParseGroup).ToArray(),
+                Settings = settings,
+                Info = new CameraInfo(root["info"]),
             };
 
             // try to find types for status items
@@ -72,6 +63,28 @@ namespace Asv.GoPro.Shell.Protocol
             }
 
             return result;
+        }
+
+        private static GoProSettingItem ParseSettings(JToken set)
+        {
+            return new GoProSettingItem
+            {
+                Id = set["id"].ToObject<int>(),
+                UniqueDisplayName = set["display_name"].ToObject<string>(),
+                DisplayName = set["display_name"].ToObject<string>(),
+                Options = set["options"].Children().Select(ParseSettingsOption).ToArray(),
+            };
+        }
+
+        private static GoProSettingOptionItem ParseSettingsOption(JToken set)
+        {
+            return new GoProSettingOptionItem
+            {
+                Id = set["id"].ToObject<int>(),
+                UniqueDisplayName = set["display_name"].ToObject<string>(),
+                DisplayName = set["display_name"].ToObject<string>(),
+                Value = set["value"].ToObject<int>(),
+            };
         }
 
         private static StatusFieldType Convert(JTokenType type)

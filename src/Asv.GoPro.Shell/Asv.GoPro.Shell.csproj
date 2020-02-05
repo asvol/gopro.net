@@ -105,6 +105,7 @@
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\StopCommand.cs" />
     <Compile Include="Commands\GetJsonSchema.cs" />
+    <Compile Include="Protocol\GoProProtocolGenerator.cs" />
     <Compile Include="Protocol\GoProProtocolParser.cs" />
     <Compile Include="Protocol\GoProProtocolModel.cs" />
     <Compile Include="Tools\AssemblyInfoExtentions.cs" />

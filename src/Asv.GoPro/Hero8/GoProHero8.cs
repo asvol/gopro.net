@@ -15,6 +15,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Asv.GoPro
 {
+    
+
+
     public class GoProHero8 : IGoProCamera
     {
         private readonly TimeSpan _requestTimeoutMs;

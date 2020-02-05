@@ -81,7 +81,6 @@
     <Compile Include="Hero8\GoProHero8.cs" />
     <Compile Include="IGoProCamera.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocol\GoProProtocolModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,9 +1,5 @@
 ﻿using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Asv.GoPro.Shell.Protocol;
-using Asv.GoPro.Shell.ProtocolModel;
 using ManyConsole;
 using GoProProtocolParser = Asv.GoPro.Shell.Protocol.GoProProtocolParser;
 
