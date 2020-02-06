@@ -51,5 +51,6 @@ namespace Asv.GoPro
         Task DownloadFile(string sourceDirName, string sourceFileName, string destFileName, CancellationToken cancel);
         Task DownloadThumbnail(string sourceDirName, string sourceFileName, string destFileName, CancellationToken cancel);
         Task<string> GetJsonSchema(CancellationToken cancel);
+        Task<string> GetJsonStatus(CancellationToken cancel);
     }
 }

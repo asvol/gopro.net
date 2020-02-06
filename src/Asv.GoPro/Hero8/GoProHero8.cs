@@ -196,6 +196,11 @@ namespace Asv.GoPro
             return GetString("/gp/gpControl", cancel);
         }
 
+        public Task<string> GetJsonStatus(CancellationToken cancel)
+        {
+            return GetString("/gp/gpControl/status", cancel);
+        }
+
 
         public void Dispose()
         {
