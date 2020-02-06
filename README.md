@@ -47,11 +47,11 @@ asv-gorpo.exe start
 asv-gorpo.exe stop
 # Download JSON protocol schema and device info from GoPro
 asv-gorpo.exe schema schema.json
-# Download JSON status from GoPro
-asv-gorpo.exe schema schema.json
+# Download status from GoPro and save to the file
+asv-gorpo.exe status out.txt
 
 # Generate code from JSON protocol schema (need for code generation)
-asv-gorpo.exe schema schema.json
+asv-gorpo.exe schema schema.json status.json
 # Generate code from protocol schema, JSON status example, liquid syntax template
 cg schema.json status.json csharp.tpl out.cs
 ```
