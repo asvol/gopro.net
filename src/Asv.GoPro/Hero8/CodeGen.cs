@@ -276,29 +276,29 @@ namespace Asv.GoPro
             _status = status;
         }
 
-        private static StatusApp _statusApp;
+        private StatusApp _statusApp;
         public StatusApp App => _statusApp ?? (_statusApp = new StatusApp(_status));
-        private static StatusBroadcast _statusBroadcast;
+        private StatusBroadcast _statusBroadcast;
         public StatusBroadcast Broadcast => _statusBroadcast ?? (_statusBroadcast = new StatusBroadcast(_status));
-        private static StatusFwupdate _statusFwupdate;
+        private StatusFwupdate _statusFwupdate;
         public StatusFwupdate Fwupdate => _statusFwupdate ?? (_statusFwupdate = new StatusFwupdate(_status));
-        private static StatusLiveview _statusLiveview;
+        private StatusLiveview _statusLiveview;
         public StatusLiveview Liveview => _statusLiveview ?? (_statusLiveview = new StatusLiveview(_status));
-        private static StatusMultiShot _statusMultiShot;
+        private StatusMultiShot _statusMultiShot;
         public StatusMultiShot MultiShot => _statusMultiShot ?? (_statusMultiShot = new StatusMultiShot(_status));
-        private static StatusPhoto _statusPhoto;
+        private StatusPhoto _statusPhoto;
         public StatusPhoto Photo => _statusPhoto ?? (_statusPhoto = new StatusPhoto(_status));
-        private static StatusSetup _statusSetup;
+        private StatusSetup _statusSetup;
         public StatusSetup Setup => _statusSetup ?? (_statusSetup = new StatusSetup(_status));
-        private static StatusStorage _statusStorage;
+        private StatusStorage _statusStorage;
         public StatusStorage Storage => _statusStorage ?? (_statusStorage = new StatusStorage(_status));
-        private static StatusStream _statusStream;
+        private StatusStream _statusStream;
         public StatusStream Stream => _statusStream ?? (_statusStream = new StatusStream(_status));
-        private static StatusSystem _statusSystem;
+        private StatusSystem _statusSystem;
         public StatusSystem System => _statusSystem ?? (_statusSystem = new StatusSystem(_status));
-        private static StatusVideo _statusVideo;
+        private StatusVideo _statusVideo;
         public StatusVideo Video => _statusVideo ?? (_statusVideo = new StatusVideo(_status));
-        private static StatusWireless _statusWireless;
+        private StatusWireless _statusWireless;
         public StatusWireless Wireless => _statusWireless ?? (_statusWireless = new StatusWireless(_status));
 
     }

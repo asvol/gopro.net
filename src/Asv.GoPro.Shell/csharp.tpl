@@ -116,7 +116,7 @@ namespace Asv.GoPro
         }
 
 {%- for group in Status -%}
-		private static Status{{group.CamelName}} _status{{group.CamelName}};
+		private Status{{group.CamelName}} _status{{group.CamelName}};
         public Status{{group.CamelName}} {{group.CamelName}}  => _status{{group.CamelName}} ?? (_status{{group.CamelName}} = new Status{{group.CamelName}}(_status));
 {%- endfor -%}
 
